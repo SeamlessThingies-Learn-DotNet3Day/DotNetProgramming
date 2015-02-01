@@ -9,7 +9,7 @@ using bSeamless.DotNetProg.Model.V1.Data;
 using bSeamless.DotNetProg.Model.V1.Services;
 using Ninject;
 
-namespace bSeamless.DotNetProg.Ninject.V1.Runner
+namespace bSeamless.DotNetProg.Model.V1.Services
 {
     public class MockDataService : DataServiceBase
     {

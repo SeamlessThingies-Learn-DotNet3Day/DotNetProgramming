@@ -124,6 +124,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\bSeamless.DotNetProg.Model.V1.Data\bSeamless.DotNetProg.Model.V1.Data.csproj">
+      <Project>{18ebdd50-eca0-467d-a183-0a44786649e1}</Project>
+      <Name>bSeamless.DotNetProg.Model.V1.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bSeamless.DotNetProg.Model.V1.Services\bSeamless.DotNetProg.Model.V1.Services.csproj">
+      <Project>{9c043cd2-45d7-4091-b235-dbade293b138}</Project>
+      <Name>bSeamless.DotNetProg.Model.V1.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bSeamless.DotNetProg.MVVM.Core\bSeamless.DotNetProg.MVVM.Core.csproj">
       <Project>{f581dcbe-cb4a-4142-aa8c-92c5e1e01009}</Project>
       <Name>bSeamless.DotNetProg.MVVM.Core</Name>

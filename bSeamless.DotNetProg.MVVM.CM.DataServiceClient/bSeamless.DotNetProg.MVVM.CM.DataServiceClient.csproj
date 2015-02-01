@@ -139,6 +139,14 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\bSeamless.DotNetProg.Model.V1.Data\bSeamless.DotNetProg.Model.V1.Data.csproj">
+      <Project>{18ebdd50-eca0-467d-a183-0a44786649e1}</Project>
+      <Name>bSeamless.DotNetProg.Model.V1.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bSeamless.DotNetProg.Model.V1.Services\bSeamless.DotNetProg.Model.V1.Services.csproj">
+      <Project>{9c043cd2-45d7-4091-b235-dbade293b138}</Project>
+      <Name>bSeamless.DotNetProg.Model.V1.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bSeamless.DotNetProg.MVVM.CM.Common\bSeamless.DotNetProg.MVVM.CM.Common.csproj">
       <Project>{c4191430-def4-4a30-bcd7-71e89f2eeddd}</Project>
       <Name>bSeamless.DotNetProg.MVVM.CM.Common</Name>

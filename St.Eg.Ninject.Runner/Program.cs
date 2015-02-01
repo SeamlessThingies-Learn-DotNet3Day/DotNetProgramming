@@ -313,16 +313,6 @@ namespace St.Eg.Ninject.Runnerr
             s.GetEmployees();
             //Console.WriteLine(employees);
              * */
-
-            
-            kernel.Bind<Foo>().ToSelf();
-            kernel.InterceptAround<Foo>(f => f.bar(),
-                i => { Console.WriteLine("befor bar()"); },
-                i => { Console.WriteLine("after bar()"); });
-            var foo = kernel.Get<Foo>();
-            //Console.WriteLine(foo.GetType().Name);
-            foo.bar();
-             
         }
     }
 }

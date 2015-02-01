@@ -2,7 +2,6 @@ using bSeamless.DotNetProg.Model.V1.Services;
 using bSeamless.DotNetProg.MVVM.CM.Common;
 using bSeamless.DotNetProg.MVVM.CM.DataServiceClient.Model;
 using bSeamless.DotNetProg.MVVM.CM.DataServiceClient.ViewModels;
-using bSeamless.DotNetProg.MVVM.CM.DataServiceClient.Views;
 using bSeamless.DotNetProg.Ninject.V1.Runner;
 using Ninject;
 

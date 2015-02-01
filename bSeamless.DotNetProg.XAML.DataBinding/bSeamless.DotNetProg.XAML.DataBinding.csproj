@@ -95,6 +95,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\bSeamless.DotNetProg.Model.V3.Data\bSeamless.DotNetProg.Model.V3.Data.csproj">
+      <Project>{5408f02f-5c06-4e98-9b08-ad088a1a8fa3}</Project>
+      <Name>bSeamless.DotNetProg.Model.V3.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\bSeamless.DotNetProg.MVVM.Core\bSeamless.DotNetProg.MVVM.Core.csproj">
       <Project>{f581dcbe-cb4a-4142-aa8c-92c5e1e01009}</Project>
       <Name>bSeamless.DotNetProg.MVVM.Core</Name>
