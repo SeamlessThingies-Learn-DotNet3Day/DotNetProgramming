@@ -1,0 +1,36 @@
+﻿<Application x:Class="bSeamless.DotNetProg.XAML.Theming.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+
+            <!-- Metro Theme -->
+        <ResourceDictionary Source="Themes/MetroLight/Metro.MSControls.Core.Implicit.xaml" />
+        <ResourceDictionary Source="Themes/MetroLight/Metro.MSControls.Toolkit.Implicit.xaml" />
+
+        <!-- MetroDark Theme -->
+        <!--<ResourceDictionary Source="Themes/MetroDark/MetroDark.MSControls.Core.Implicit.xaml" />
+                <ResourceDictionary Source="Themes/MetroDark/MetroDark.MSControls.Toolkit.Implicit.xaml" />-->
+            </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="BackgroundKey" Color="#FFFFFF" />
+
+            <!-- Dark Theme -->
+            <!--<SolidColorBrush x:Key="BackgroundKey" Color="#FF181818" />-->
+
+            <Style x:Key="HeaderTextBlockStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="FontFamily" Value="Segoe UI" />
+                <Setter Property="Foreground" Value="#FF00AADE" />
+            </Style>
+
+            <Style x:Key="SubHeaderTextBlockStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontFamily" Value="Segoe UI" />
+                <Setter Property="Foreground" Value="#FF00AADE" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

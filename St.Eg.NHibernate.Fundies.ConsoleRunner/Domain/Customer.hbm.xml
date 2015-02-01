@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping namespace="St.Eg.NHibernate.Fundies.ConsoleRunner.Domain" 
+                   assembly="St.Eg.NHibernate.Fundies.ConsoleRunner" 
+                   xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Customer" table="`Customers`" schema="`dbo`">
+    <id name="Id" access="property" column="`Id`">
+      <generator class="native" />
+    </id>
+    <property name="EmailAddress" type="String" column="`EmailAddress`" length="50" />
+    <property name="FirstName" type="String" column="`FirstName`" length="40" />
+    <property name="LastName" type="String" column="`LastName`" length="40" />
+    <property name="Phone" type="String" column="`Phone`" length="25" />
+    <property name="SalesPersonId" type="String" column="`SalesPersonId`" length="4000" />
+    <property name="Title" type="String" column="`Title`" length="10" />
+  </class>
+</hibernate-mapping>

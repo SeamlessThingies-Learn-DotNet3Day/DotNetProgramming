@@ -1,0 +1,8 @@
+﻿<Application x:Class="bSeamless.DotNetProg.XAML.BasicElements.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="RoutedEvents.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

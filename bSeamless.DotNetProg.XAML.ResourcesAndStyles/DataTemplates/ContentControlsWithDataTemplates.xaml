@@ -1,0 +1,36 @@
+﻿<Window x:Class="bSeamless.DotNetProg.XAML.ResourcesAndStyles.DataTemplates.ContentControlsWithDataTemplates"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:data="clr-namespace:bSeamless.DotNetProg.Model.V1.Data;assembly=bSeamless.DotNetProg.Model.V1.Data"
+        Title="ContentControlsWithDataTemplates" Height="300" Width="300">
+    <Window.Resources>
+        <DataTemplate x:Key="explicitEmployeeDT" DataType="{x:Type data:Employee}">
+            <Grid>
+                <TextBlock Text="{Binding FirstName}" Foreground="Red"></TextBlock>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type data:Employee}">
+            <Grid>
+                <TextBlock Text="{Binding FirstName}" Foreground="Blue"></TextBlock>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type data:Customer}">
+            <Grid>
+                <TextBlock Text="{Binding FirstName}" Foreground="Purple"></TextBlock>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <StackPanel>
+            <ContentControl ContentTemplate="{StaticResource explicitEmployeeDT}">
+                <data:Employee FirstName="Mike" />
+            </ContentControl>
+            <ContentControl>
+                <data:Employee FirstName="Marcia" />
+            </ContentControl>
+            <ContentControl>
+                <data:Customer FirstName="Bleu" />
+            </ContentControl>
+        </StackPanel>
+    </Grid>
+</Window>

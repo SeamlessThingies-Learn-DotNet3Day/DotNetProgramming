@@ -1,0 +1,15 @@
+﻿<Window x:Class="bSeamless.DotNetProg.XAML.BasicElements.Commands"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Commands" Height="300" Width="300">
+    <Grid>
+        <StackPanel>
+
+            <StackPanel>
+                <RadioButton x:Name="rbEnable" Click="rbEnable_OnClick" IsChecked="True">Enable</RadioButton>
+                <RadioButton x:Name="rbDisable" Click="rbDisable_OnClick">Disable</RadioButton>
+            </StackPanel>
+        </StackPanel>
+        <Button  Command="{Binding ButtonClickedCommand}" Width="100" Height="100" Content="Press me..."></Button>
+    </Grid>
+</Window>

@@ -1,0 +1,4 @@
+﻿<module name="dataRegisrationModule">
+  <bind service="bSeamless.DotNetProg.Model.V1.Services.IDataService, bSeamless.DotNetProg.Model.V1.Services"
+        to="bSeamless.DotNetProg.Model.V1.Services.MockDataService, bSeamless.DotNetProg.Model.V1.Services" />
+</module>

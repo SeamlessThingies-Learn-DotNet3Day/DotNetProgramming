@@ -1,0 +1,25 @@
+﻿<Window x:Class="bSeamless.DotNetProg.XAML.BasicElements.Shapes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Shapes" Height="300" Width="300">
+    <Grid>
+        <Rectangle Width="187"
+                   Height="131"
+                   Margin="55,43,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Fill="#FFD42828"
+                   Stroke="#FF2646B4"
+                   StrokeThickness="5" />
+
+        <Ellipse Width="238"
+                 Height="152"
+                 Margin="171,99,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 Fill="#FFFBDC1A"
+                 Stroke="#FF46B426"
+                 StrokeThickness="5" />
+
+    </Grid>
+</Window>

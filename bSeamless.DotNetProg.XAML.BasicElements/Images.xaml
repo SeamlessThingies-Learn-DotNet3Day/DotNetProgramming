@@ -1,0 +1,9 @@
+﻿<Window x:Class="bSeamless.DotNetProg.XAML.BasicElements.Images"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Images" Height="500" Width="500">
+    <Grid>
+        <Image Source="./Assets/Braquedauvergne1446.JPG"></Image>
+        
+    </Grid>
+</Window>
