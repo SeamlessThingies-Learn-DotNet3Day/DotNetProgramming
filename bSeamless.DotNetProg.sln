@@ -235,6 +235,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Daily Outlines", "Daily Out
 		Daily Outlines\Day 3 - NServiceBus.docx = Daily Outlines\Day 3 - NServiceBus.docx
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gists", "Gists", "{D891E226-6E85-4EAC-9215-B04122C7D5FC}"
+	ProjectSection(SolutionItems) = preProject
+		Gists\DeleteAllQueuesGist.ps = Gists\DeleteAllQueuesGist.ps
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
