@@ -219,9 +219,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ST.Eg.EF.CodeFirst.BuildDat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ST.Eg.EF.CodeFirst.Model", "ST.Eg.EF.CodeFirst.Model\ST.Eg.EF.CodeFirst.Model.csproj", "{A6905587-D791-4C4F-A271-3089A7A4C5B5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{BBB5CDDC-DFC8-4DE7-80AD-9E12B7284EFB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ST.Eg.EF.CodeFirst.DataAccess", "ST.Eg.EF.CodeFirst.DataAccess\ST.Eg.EF.CodeFirst.DataAccess.csproj", "{71BE99E4-6765-4E5C-BBB7-9C92332E221C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99 - Base Database", "99 - Base Database", "{444FE6D6-9264-4A72-A53A-64470D06C61D}"
+	ProjectSection(SolutionItems) = preProject
+		Data\DataAccess.BreakAwayContext.mdf = Data\DataAccess.BreakAwayContext.mdf
+		Data\DataAccess.BreakAwayContext_log.ldf = Data\DataAccess.BreakAwayContext_log.ldf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -686,7 +690,7 @@ Global
 		{068FE59C-9217-4FD2-AD6B-5927F4C3BBF0} = {784F6953-5777-4858-B0D3-975E509A9715}
 		{B5B28D0F-E5D2-4AA5-8F46-8F6C425BBE12} = {068FE59C-9217-4FD2-AD6B-5927F4C3BBF0}
 		{A6905587-D791-4C4F-A271-3089A7A4C5B5} = {068FE59C-9217-4FD2-AD6B-5927F4C3BBF0}
-		{BBB5CDDC-DFC8-4DE7-80AD-9E12B7284EFB} = {C5EDD924-38A5-4663-95C8-C3CF6106328D}
 		{71BE99E4-6765-4E5C-BBB7-9C92332E221C} = {068FE59C-9217-4FD2-AD6B-5927F4C3BBF0}
+		{444FE6D6-9264-4A72-A53A-64470D06C61D} = {784F6953-5777-4858-B0D3-975E509A9715}
 	EndGlobalSection
 EndGlobal
