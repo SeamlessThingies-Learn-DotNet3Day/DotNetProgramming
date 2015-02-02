@@ -229,8 +229,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99 - Base Database", "99 - 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Daily Outlines", "Daily Outlines", "{1C5742AD-977F-4806-8E2A-C9A87824C9FD}"
 	ProjectSection(SolutionItems) = preProject
+		Slides\0 - Intro.pptx = Slides\0 - Intro.pptx
 		Daily Outlines\Day 1 - Ninject, XAML and WPF, MVVM.docx = Daily Outlines\Day 1 - Ninject, XAML and WPF, MVVM.docx
 		Daily Outlines\Day 2 - NHibernate and EF.docx = Daily Outlines\Day 2 - NHibernate and EF.docx
+		Daily Outlines\Day 3 - NServiceBus.docx = Daily Outlines\Day 3 - NServiceBus.docx
 	EndProjectSection
 EndProject
 Global
