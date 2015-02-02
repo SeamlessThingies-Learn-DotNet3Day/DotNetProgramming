@@ -1,0 +1,748 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DataAccess.BreakAwayContextModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="TravelWarnings" Type="nvarchar(max)" />
+          <Property Name="ClimateInfo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Activities">
+          <Key>
+            <PropertyRef Name="ActivityId" />
+          </Key>
+          <Property Name="ActivityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActivityTrips">
+          <Key>
+            <PropertyRef Name="Activity_ActivityId" />
+            <PropertyRef Name="Trip_Identifier" />
+          </Key>
+          <Property Name="Activity_ActivityId" Type="int" Nullable="false" />
+          <Property Name="Trip_Identifier" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InternetSpecials">
+          <Key>
+            <PropertyRef Name="InternetSpecialId" />
+          </Key>
+          <Property Name="InternetSpecialId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nights" Type="int" Nullable="false" />
+          <Property Name="CostUSD" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FromDate" Type="datetime" Nullable="false" />
+          <Property Name="ToDate" Type="datetime" Nullable="false" />
+          <Property Name="AccommodationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lodgings">
+          <Key>
+            <PropertyRef Name="LodgingId" />
+          </Key>
+          <Property Name="LodgingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Owner" Type="nvarchar(max)" />
+          <Property Name="MilesFromNearestAirport" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="destination_id" Type="int" Nullable="false" />
+          <Property Name="PrimaryContactId" Type="int" />
+          <Property Name="SecondaryContactId" Type="int" />
+          <Property Name="MaxPersonsPerRoom" Type="int" />
+          <Property Name="PrivateRoomsAvailable" Type="bit" />
+          <Property Name="Entertainment" Type="nvarchar(max)" />
+          <Property Name="Activities" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="PaymentId" />
+          </Key>
+          <Property Name="PaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReservationId" Type="int" Nullable="false" />
+          <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="People">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SocialSecurityNumber" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Address_AddressId" Type="int" Nullable="false" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="150" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="State" Type="nvarchar(max)" />
+          <Property Name="ZipCode" Type="nvarchar(max)" />
+          <Property Name="Info_Weight_Reading" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Info_Weight_Units" Type="nvarchar(max)" />
+          <Property Name="Info_Height_Reading" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Info_Height_Units" Type="nvarchar(max)" />
+          <Property Name="Info_DietryRestrictions" Type="nvarchar(max)" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="Caption" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Reservations">
+          <Key>
+            <PropertyRef Name="ReservationId" />
+          </Key>
+          <Property Name="ReservationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateTimeMade" Type="datetime" Nullable="false" />
+          <Property Name="PaidInFull" Type="datetime" />
+          <Property Name="Traveler_PersonId" Type="int" />
+          <Property Name="Trip_Identifier" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Trips">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CostUSD" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="DestinationId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ActivityTrips_Activities_Activity_ActivityId">
+          <End Role="Activities" Type="Self.Activities" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ActivityTrips" Type="Self.ActivityTrips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activities">
+              <PropertyRef Name="ActivityId" />
+            </Principal>
+            <Dependent Role="ActivityTrips">
+              <PropertyRef Name="Activity_ActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActivityTrips_Trips_Trip_Identifier">
+          <End Role="Trips" Type="Self.Trips" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ActivityTrips" Type="Self.ActivityTrips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trips">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="ActivityTrips">
+              <PropertyRef Name="Trip_Identifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InternetSpecials_Lodgings_AccommodationId">
+          <End Role="Lodgings" Type="Self.Lodgings" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InternetSpecials" Type="Self.InternetSpecials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lodgings">
+              <PropertyRef Name="LodgingId" />
+            </Principal>
+            <Dependent Role="InternetSpecials">
+              <PropertyRef Name="AccommodationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lodgings_baga_Locations_destination_id">
+          <End Role="Locations" Type="Self.Locations" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Lodgings" Type="Self.Lodgings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Lodgings">
+              <PropertyRef Name="destination_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lodgings_People_PrimaryContactId">
+          <End Role="People" Type="Self.People" Multiplicity="0..1" />
+          <End Role="Lodgings" Type="Self.Lodgings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Lodgings">
+              <PropertyRef Name="PrimaryContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lodgings_People_SecondaryContactId">
+          <End Role="People" Type="Self.People" Multiplicity="0..1" />
+          <End Role="Lodgings" Type="Self.Lodgings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Lodgings">
+              <PropertyRef Name="SecondaryContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_Reservations_ReservationId">
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservations">
+              <PropertyRef Name="ReservationId" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservations_People_Traveler_PersonId">
+          <End Role="People" Type="Self.People" Multiplicity="0..1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Traveler_PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservations_Trips_Trip_Identifier">
+          <End Role="Trips" Type="Self.Trips" Multiplicity="0..1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trips">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Trip_Identifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trips_baga_Locations_DestinationId">
+          <End Role="Locations" Type="Self.Locations" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Trips" Type="Self.Trips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Trips">
+              <PropertyRef Name="DestinationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataAccessBreakAwayContextModelStoreContainer">
+          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="baga" store:Type="Tables" />
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Activities" EntityType="Self.Activities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityTrips" EntityType="Self.ActivityTrips" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InternetSpecials" EntityType="Self.InternetSpecials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lodgings" EntityType="Self.Lodgings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trips" EntityType="Self.Trips" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ActivityTrips_Activities_Activity_ActivityId" Association="Self.FK_ActivityTrips_Activities_Activity_ActivityId">
+            <End Role="Activities" EntitySet="Activities" />
+            <End Role="ActivityTrips" EntitySet="ActivityTrips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActivityTrips_Trips_Trip_Identifier" Association="Self.FK_ActivityTrips_Trips_Trip_Identifier">
+            <End Role="Trips" EntitySet="Trips" />
+            <End Role="ActivityTrips" EntitySet="ActivityTrips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InternetSpecials_Lodgings_AccommodationId" Association="Self.FK_InternetSpecials_Lodgings_AccommodationId">
+            <End Role="Lodgings" EntitySet="Lodgings" />
+            <End Role="InternetSpecials" EntitySet="InternetSpecials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lodgings_baga_Locations_destination_id" Association="Self.FK_Lodgings_baga_Locations_destination_id">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Lodgings" EntitySet="Lodgings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lodgings_People_PrimaryContactId" Association="Self.FK_Lodgings_People_PrimaryContactId">
+            <End Role="People" EntitySet="People" />
+            <End Role="Lodgings" EntitySet="Lodgings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lodgings_People_SecondaryContactId" Association="Self.FK_Lodgings_People_SecondaryContactId">
+            <End Role="People" EntitySet="People" />
+            <End Role="Lodgings" EntitySet="Lodgings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_Reservations_ReservationId" Association="Self.FK_Payments_Reservations_ReservationId">
+            <End Role="Reservations" EntitySet="Reservations" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservations_People_Traveler_PersonId" Association="Self.FK_Reservations_People_Traveler_PersonId">
+            <End Role="People" EntitySet="People" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservations_Trips_Trip_Identifier" Association="Self.FK_Reservations_Trips_Trip_Identifier">
+            <End Role="Trips" EntitySet="Trips" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trips_baga_Locations_DestinationId" Association="Self.FK_Trips_baga_Locations_DestinationId">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Trips" EntitySet="Trips" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataAccess.BreakAwayContextModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="TravelWarnings" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClimateInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lodgings" Relationship="Self.FK_Lodgings_baga_Locations_destination_id" FromRole="Locations" ToRole="Lodgings" />
+          <NavigationProperty Name="Trips" Relationship="Self.FK_Trips_baga_Locations_DestinationId" FromRole="Locations" ToRole="Trips" />
+        </EntityType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityId" />
+          </Key>
+          <Property Name="ActivityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Trips" Relationship="Self.ActivityTrips" FromRole="Activities" ToRole="Trips" />
+        </EntityType>
+        <EntityType Name="InternetSpecial">
+          <Key>
+            <PropertyRef Name="InternetSpecialId" />
+          </Key>
+          <Property Name="InternetSpecialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nights" Type="Int32" Nullable="false" />
+          <Property Name="CostUSD" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AccommodationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Lodging" Relationship="Self.FK_InternetSpecials_Lodgings_AccommodationId" FromRole="InternetSpecials" ToRole="Lodgings" />
+        </EntityType>
+        <EntityType Name="Lodging">
+          <Key>
+            <PropertyRef Name="LodgingId" />
+          </Key>
+          <Property Name="LodgingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Owner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MilesFromNearestAirport" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="destination_id" Type="Int32" Nullable="false" />
+          <Property Name="PrimaryContactId" Type="Int32" />
+          <Property Name="SecondaryContactId" Type="Int32" />
+          <Property Name="MaxPersonsPerRoom" Type="Int32" />
+          <Property Name="PrivateRoomsAvailable" Type="Boolean" />
+          <Property Name="Entertainment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Activities" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Lodgings_baga_Locations_destination_id" FromRole="Lodgings" ToRole="Locations" />
+          <NavigationProperty Name="InternetSpecials" Relationship="Self.FK_InternetSpecials_Lodgings_AccommodationId" FromRole="Lodgings" ToRole="InternetSpecials" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Lodgings_People_PrimaryContactId" FromRole="Lodgings" ToRole="People" />
+          <NavigationProperty Name="Person1" Relationship="Self.FK_Lodgings_People_SecondaryContactId" FromRole="Lodgings" ToRole="People" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentId" />
+          </Key>
+          <Property Name="PaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReservationId" Type="Int32" Nullable="false" />
+          <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK_Payments_Reservations_ReservationId" FromRole="Payments" ToRole="Reservations" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SocialSecurityNumber" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address_AddressId" Type="Int32" Nullable="false" />
+          <Property Name="StreetAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Info_Weight_Reading" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Info_Weight_Units" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Info_Height_Reading" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Info_Height_Units" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Info_DietryRestrictions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Caption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lodgings" Relationship="Self.FK_Lodgings_People_PrimaryContactId" FromRole="People" ToRole="Lodgings" />
+          <NavigationProperty Name="Lodgings1" Relationship="Self.FK_Lodgings_People_SecondaryContactId" FromRole="People" ToRole="Lodgings" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_People_Traveler_PersonId" FromRole="People" ToRole="Reservations" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="ReservationId" />
+          </Key>
+          <Property Name="ReservationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateTimeMade" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaidInFull" Type="DateTime" Precision="3" />
+          <Property Name="Traveler_PersonId" Type="Int32" />
+          <Property Name="Trip_Identifier" Type="Guid" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_Reservations_ReservationId" FromRole="Reservations" ToRole="Payments" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Reservations_People_Traveler_PersonId" FromRole="Reservations" ToRole="People" />
+          <NavigationProperty Name="Trip" Relationship="Self.FK_Reservations_Trips_Trip_Identifier" FromRole="Reservations" ToRole="Trips" />
+        </EntityType>
+        <EntityType Name="Trip">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Guid" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CostUSD" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="DestinationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Trips_baga_Locations_DestinationId" FromRole="Trips" ToRole="Locations" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Trips_Trip_Identifier" FromRole="Trips" ToRole="Reservations" />
+          <NavigationProperty Name="Activities" Relationship="Self.ActivityTrips" FromRole="Trips" ToRole="Activities" />
+        </EntityType>
+        <Association Name="FK_Lodgings_baga_Locations_destination_id">
+          <End Role="Locations" Type="Self.Location" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Lodgings" Type="Self.Lodging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Lodgings">
+              <PropertyRef Name="destination_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trips_baga_Locations_DestinationId">
+          <End Role="Locations" Type="Self.Location" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Trips" Type="Self.Trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Trips">
+              <PropertyRef Name="DestinationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InternetSpecials_Lodgings_AccommodationId">
+          <End Role="Lodgings" Type="Self.Lodging" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InternetSpecials" Type="Self.InternetSpecial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lodgings">
+              <PropertyRef Name="LodgingId" />
+            </Principal>
+            <Dependent Role="InternetSpecials">
+              <PropertyRef Name="AccommodationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lodgings_People_PrimaryContactId">
+          <End Role="People" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Lodgings" Type="Self.Lodging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Lodgings">
+              <PropertyRef Name="PrimaryContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lodgings_People_SecondaryContactId">
+          <End Role="People" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Lodgings" Type="Self.Lodging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Lodgings">
+              <PropertyRef Name="SecondaryContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_Reservations_ReservationId">
+          <End Role="Reservations" Type="Self.Reservation" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservations">
+              <PropertyRef Name="ReservationId" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservations_People_Traveler_PersonId">
+          <End Role="People" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Traveler_PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservations_Trips_Trip_Identifier">
+          <End Role="Trips" Type="Self.Trip" Multiplicity="0..1" />
+          <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trips">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Trip_Identifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ActivityTrips">
+          <End Role="Activities" Type="Self.Activity" Multiplicity="*" />
+          <End Role="Trips" Type="Self.Trip" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="BreakAwayContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Activities" EntityType="Self.Activity" />
+          <EntitySet Name="InternetSpecials" EntityType="Self.InternetSpecial" />
+          <EntitySet Name="Lodgings" EntityType="Self.Lodging" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservation" />
+          <EntitySet Name="Trips" EntityType="Self.Trip" />
+          <AssociationSet Name="FK_Lodgings_baga_Locations_destination_id" Association="Self.FK_Lodgings_baga_Locations_destination_id">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Lodgings" EntitySet="Lodgings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trips_baga_Locations_DestinationId" Association="Self.FK_Trips_baga_Locations_DestinationId">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Trips" EntitySet="Trips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InternetSpecials_Lodgings_AccommodationId" Association="Self.FK_InternetSpecials_Lodgings_AccommodationId">
+            <End Role="Lodgings" EntitySet="Lodgings" />
+            <End Role="InternetSpecials" EntitySet="InternetSpecials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lodgings_People_PrimaryContactId" Association="Self.FK_Lodgings_People_PrimaryContactId">
+            <End Role="People" EntitySet="People" />
+            <End Role="Lodgings" EntitySet="Lodgings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lodgings_People_SecondaryContactId" Association="Self.FK_Lodgings_People_SecondaryContactId">
+            <End Role="People" EntitySet="People" />
+            <End Role="Lodgings" EntitySet="Lodgings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_Reservations_ReservationId" Association="Self.FK_Payments_Reservations_ReservationId">
+            <End Role="Reservations" EntitySet="Reservations" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservations_People_Traveler_PersonId" Association="Self.FK_Reservations_People_Traveler_PersonId">
+            <End Role="People" EntitySet="People" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservations_Trips_Trip_Identifier" Association="Self.FK_Reservations_Trips_Trip_Identifier">
+            <End Role="Trips" EntitySet="Trips" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="ActivityTrips" Association="Self.ActivityTrips">
+            <End Role="Activities" EntitySet="Activities" />
+            <End Role="Trips" EntitySet="Trips" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataAccessBreakAwayContextModelStoreContainer" CdmEntityContainer="BreakAwayContext">
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="DataAccess.BreakAwayContextModel.Location">
+              <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="TravelWarnings" ColumnName="TravelWarnings" />
+                <ScalarProperty Name="ClimateInfo" ColumnName="ClimateInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="DataAccess.BreakAwayContextModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Activities">
+            <EntityTypeMapping TypeName="DataAccess.BreakAwayContextModel.Activity">
+              <MappingFragment StoreEntitySet="Activities">
+                <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InternetSpecials">
+            <EntityTypeMapping TypeName="DataAccess.BreakAwayContextModel.InternetSpecial">
+              <MappingFragment StoreEntitySet="InternetSpecials">
+                <ScalarProperty Name="InternetSpecialId" ColumnName="InternetSpecialId" />
+                <ScalarProperty Name="Nights" ColumnName="Nights" />
+                <ScalarProperty Name="CostUSD" ColumnName="CostUSD" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="AccommodationId" ColumnName="AccommodationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lodgings">
+            <EntityTypeMapping TypeName="DataAccess.BreakAwayContextModel.Lodging">
+              <MappingFragment StoreEntitySet="Lodgings">
+                <ScalarProperty Name="LodgingId" ColumnName="LodgingId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="MilesFromNearestAirport" ColumnName="MilesFromNearestAirport" />
+                <ScalarProperty Name="destination_id" ColumnName="destination_id" />
+                <ScalarProperty Name="PrimaryContactId" ColumnName="PrimaryContactId" />
+                <ScalarProperty Name="SecondaryContactId" ColumnName="SecondaryContactId" />
+                <ScalarProperty Name="MaxPersonsPerRoom" ColumnName="MaxPersonsPerRoom" />
+                <ScalarProperty Name="PrivateRoomsAvailable" ColumnName="PrivateRoomsAvailable" />
+                <ScalarProperty Name="Entertainment" ColumnName="Entertainment" />
+                <ScalarProperty Name="Activities" ColumnName="Activities" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="DataAccess.BreakAwayContextModel.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="DataAccess.BreakAwayContextModel.Person">
+              <MappingFragment StoreEntitySet="People">
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="SocialSecurityNumber" ColumnName="SocialSecurityNumber" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address_AddressId" ColumnName="Address_AddressId" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Info_Weight_Reading" ColumnName="Info_Weight_Reading" />
+                <ScalarProperty Name="Info_Weight_Units" ColumnName="Info_Weight_Units" />
+                <ScalarProperty Name="Info_Height_Reading" ColumnName="Info_Height_Reading" />
+                <ScalarProperty Name="Info_Height_Units" ColumnName="Info_Height_Units" />
+                <ScalarProperty Name="Info_DietryRestrictions" ColumnName="Info_DietryRestrictions" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservations">
+            <EntityTypeMapping TypeName="DataAccess.BreakAwayContextModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservations">
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="DateTimeMade" ColumnName="DateTimeMade" />
+                <ScalarProperty Name="PaidInFull" ColumnName="PaidInFull" />
+                <ScalarProperty Name="Traveler_PersonId" ColumnName="Traveler_PersonId" />
+                <ScalarProperty Name="Trip_Identifier" ColumnName="Trip_Identifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trips">
+            <EntityTypeMapping TypeName="DataAccess.BreakAwayContextModel.Trip">
+              <MappingFragment StoreEntitySet="Trips">
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CostUSD" ColumnName="CostUSD" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DestinationId" ColumnName="DestinationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ActivityTrips" TypeName="DataAccess.BreakAwayContextModel.ActivityTrips" StoreEntitySet="ActivityTrips">
+            <EndProperty Name="Activities">
+              <ScalarProperty Name="ActivityId" ColumnName="Activity_ActivityId" />
+            </EndProperty>
+            <EndProperty Name="Trips">
+              <ScalarProperty Name="Identifier" ColumnName="Trip_Identifier" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

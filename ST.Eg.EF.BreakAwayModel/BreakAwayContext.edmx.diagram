@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a3ceb23938bd4b93905d0f473e0502a1" Name="Diagram1">
+        <EntityTypeShape EntityType="DataAccess.BreakAwayContextModel.Location" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAccess.BreakAwayContextModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAccess.BreakAwayContextModel.Activity" Width="1.5" PointX="1.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAccess.BreakAwayContextModel.InternetSpecial" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAccess.BreakAwayContextModel.Lodging" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAccess.BreakAwayContextModel.Payment" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAccess.BreakAwayContextModel.Person" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAccess.BreakAwayContextModel.Reservation" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAccess.BreakAwayContextModel.Trip" Width="1.5" PointX="3.75" PointY="13.375" IsExpanded="true" />
+        <AssociationConnector Association="DataAccess.BreakAwayContextModel.FK_Lodgings_baga_Locations_destination_id" ManuallyRouted="false" />
+        <AssociationConnector Association="DataAccess.BreakAwayContextModel.FK_Trips_baga_Locations_DestinationId" ManuallyRouted="false" />
+        <AssociationConnector Association="DataAccess.BreakAwayContextModel.FK_InternetSpecials_Lodgings_AccommodationId" ManuallyRouted="false" />
+        <AssociationConnector Association="DataAccess.BreakAwayContextModel.FK_Lodgings_People_PrimaryContactId" ManuallyRouted="false" />
+        <AssociationConnector Association="DataAccess.BreakAwayContextModel.FK_Lodgings_People_SecondaryContactId" ManuallyRouted="false" />
+        <AssociationConnector Association="DataAccess.BreakAwayContextModel.FK_Payments_Reservations_ReservationId" ManuallyRouted="false" />
+        <AssociationConnector Association="DataAccess.BreakAwayContextModel.FK_Reservations_People_Traveler_PersonId" ManuallyRouted="false" />
+        <AssociationConnector Association="DataAccess.BreakAwayContextModel.FK_Reservations_Trips_Trip_Identifier" ManuallyRouted="false" />
+        <AssociationConnector Association="DataAccess.BreakAwayContextModel.ActivityTrips" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
