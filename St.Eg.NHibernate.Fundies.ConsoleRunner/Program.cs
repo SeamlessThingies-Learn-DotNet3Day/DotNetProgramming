@@ -23,9 +23,9 @@ namespace St.Eg.NHibernate.Fundies.ConsoleRunner
             try
             {
                 var s = new Strategies();
-                //s.ex1_CreateDatabaseNonFluent();
+//                s.ex1_CreateDatabaseNonFluent();
                 //s.ex2_CreateDatabaseFluent();
-                //s.ex3_InsertMultipleCustomers();
+                s.ex3_InsertMultipleCustomers();
                 //s.ex4_InsertMultipleCustomersAndShowSql();
                 //s.ex5_QueryWithCriteria();
                 //s.ex5_QueryWithLinq();

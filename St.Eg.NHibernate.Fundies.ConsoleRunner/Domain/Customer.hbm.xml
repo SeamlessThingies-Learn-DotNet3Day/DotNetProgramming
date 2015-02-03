@@ -12,5 +12,6 @@
     <property name="Phone" type="String" column="`Phone`" length="25" />
     <property name="SalesPersonId" type="String" column="`SalesPersonId`" length="4000" />
     <property name="Title" type="String" column="`Title`" length="10" />
+    <property name="CompanyName" type="String" column="`COmpanyName`" length="20" />
   </class>
 </hibernate-mapping>
