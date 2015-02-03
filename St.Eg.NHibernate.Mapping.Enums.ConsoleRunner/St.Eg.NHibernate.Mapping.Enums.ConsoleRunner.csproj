@@ -65,6 +65,16 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\St.Eg.NHibernate.Domain\St.Eg.NHibernate.Domain.csproj">
+      <Project>{c97b0d77-9872-4bcb-bc25-db6a94fb907a}</Project>
+      <Name>St.Eg.NHibernate.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\St.Eg.NHibernate.FluentMappings\St.Eg.NHibernate.FluentMappings.csproj">
+      <Project>{fe7377cd-8f77-49ca-9cea-4cc1458bc63e}</Project>
+      <Name>St.Eg.NHibernate.FluentMappings</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

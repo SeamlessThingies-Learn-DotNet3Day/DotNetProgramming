@@ -56,6 +56,7 @@ namespace St.Eg.NHibernate.Fundies.ConsoleRunner
 
         public void ex1_CreateDatabaseNonFluent()
         {
+            /*
             var cfg = new Configuration();
             cfg.DataBaseIntegration(x =>
             {
@@ -71,10 +72,12 @@ namespace St.Eg.NHibernate.Fundies.ConsoleRunner
             se.Create(true, true);
 
             Trace.WriteLine("Database dropped and created");
+             * */
         }
 
         public void ex2_CreateDatabaseFluent()
         {
+            /*
             Fluently.Configure()
                     .Database(MsSqlConfiguration.MsSql2012.ConnectionString(_connString))
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Program>())
@@ -87,10 +90,12 @@ namespace St.Eg.NHibernate.Fundies.ConsoleRunner
                     .BuildConfiguration();
 
             Trace.WriteLine("Database dropped and created");
+             * */
         }
 
         public void ex3_InsertMultipleCustomers()
         {
+            /*
             var sessionFactory = _kernel.Get<ISessionFactory>("sessionFactory");
             var customers = new List<Customer>();
             using (var session = sessionFactory.OpenSession())
@@ -112,10 +117,12 @@ namespace St.Eg.NHibernate.Fundies.ConsoleRunner
 
             // Id's are assigned
             customers.ForEach(c => Trace.WriteLine(c));
+             * */
         }
 
         public void ex4_InsertMultipleCustomersAndShowSql()
         {
+            /*
             var sessionFactory = _kernel.Get<ISessionFactory>("sessionFactoryShowSql");
 
             var customers = new List<Customer>();
@@ -138,19 +145,23 @@ namespace St.Eg.NHibernate.Fundies.ConsoleRunner
 
             // Id's are assigned
             customers.ForEach(c => Trace.WriteLine(c));
+             * */
         }
 
         public void ex5_QueryWithCriteria()
         {
+            /*
             var sessionFactory = _kernel.Get<ISessionFactory>("sessionFactory");
             using (var session = sessionFactory.OpenSession())
             {
                 var customers = session.CreateCriteria<Customer>().List<Customer>();
                 customers.ToList().ForEach(c => Trace.WriteLine(c));
             }
+             * */
         }
         public void ex5_QueryWithLinq()
         {
+            /*
             var sessionFactory = _kernel.Get<ISessionFactory>("sessionFactory");
             using (var session = sessionFactory.OpenSession())
             using (var tx = session.BeginTransaction())
@@ -160,10 +171,12 @@ namespace St.Eg.NHibernate.Fundies.ConsoleRunner
                 customers.ToList().ForEach(c => Trace.WriteLine(c));
                 tx.Commit();
             }
+             * */
         }
 
         public void ex6_QueryAndUpdate()
         {
+            /*
             ex2_CreateDatabaseFluent();
             ex3_InsertMultipleCustomers();
 
@@ -185,6 +198,7 @@ namespace St.Eg.NHibernate.Fundies.ConsoleRunner
                 customers.ToList().ForEach(c => Trace.WriteLine(c));
                 tx.Commit();
             }
+             * */
         }
     }
 }

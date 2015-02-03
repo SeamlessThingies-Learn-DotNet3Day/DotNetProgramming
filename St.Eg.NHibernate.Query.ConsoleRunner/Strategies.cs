@@ -55,6 +55,7 @@ namespace St.Eg.NHibernate.Query.ConsoleRunner
 
         public void ex01_GetVsLoad()
         {
+            /*
             var sessionFactory = initializeDatabase();
 
             var goodID = 1;
@@ -64,10 +65,12 @@ namespace St.Eg.NHibernate.Query.ConsoleRunner
             retrieveCustomer(sessionFactory, badID, (id, s) => s.Get<Customer>(id));
             retrieveCustomer(sessionFactory, goodID, (id, s) => s.Load<Customer>(id));
             retrieveCustomer(sessionFactory, badID, (id, s) => s.Load<Customer>(id));
+             * */
         }
 
         public void ex02_getThenLoadSameObject()
         {
+            /*
             var sessionFactory = initializeDatabase();
 
             wrap(sessionFactory, session =>
@@ -77,9 +80,10 @@ namespace St.Eg.NHibernate.Query.ConsoleRunner
                 describe(c1);
                 describe(c2);
             });
+             * */
 
         }
-
+        /*
         public void ex03_addGetVsLoad()
         {
             var sessionFactory = initializeDatabase();
@@ -97,9 +101,10 @@ namespace St.Eg.NHibernate.Query.ConsoleRunner
                 session.Save(o);
             });
         }
-
+        */
         public void ex04_LINQ()
         {
+            /*
             var sessionFactory = initializeDatabase();
 
             wrap(sessionFactory, session =>
@@ -144,10 +149,12 @@ namespace St.Eg.NHibernate.Query.ConsoleRunner
                     Trace.WriteLine(string.Format("{0} {1} placed {2} orders", stats.FirstName, stats.LastName, stats.count));
                 }
             });
+             * */
         }
 
         public void ex05_HQL()
         {
+            /*
             var sessionFactory = initializeDatabase();
 
             wrap(sessionFactory, session =>
@@ -173,10 +180,12 @@ namespace St.Eg.NHibernate.Query.ConsoleRunner
                                                 "order by c.FirstName desc");
                 describe(query.List<Customer>(), "Customers with more than <= 3 orders sorted");
             });
+             * */
         }
 
         public void ex06_CriteriaQuery()
         {
+            /*
             var sessionFactory = initializeDatabase();
 
             wrap(sessionFactory, session =>
@@ -192,13 +201,8 @@ namespace St.Eg.NHibernate.Query.ConsoleRunner
                     .Add(Restrictions.Eq("FirstName", "Mikael"));
                 describe(query.List<Customer>(), "Customers with first name Mikael");
             });
+             * */
         }
-/*
-            wrap(sessionFactory, session =>
-            {
-
-            });
- * */
 
         #region private methods
         private void wrap(ISessionFactory sessionFactory, Action<ISession> action)

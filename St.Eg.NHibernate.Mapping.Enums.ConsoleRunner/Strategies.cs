@@ -48,17 +48,20 @@ namespace St.Eg.NHibernate.Mapping.Enums.ConsoleRunner
 
         public void ex1_createCustomerWithEnum()
         {
-            ex99_CreateDatabaseFluent();
+            //ex99_CreateDatabaseFluent();
 
+            /*
             var sessionFactory = _kernel.Get<ISessionFactory>("sessionFactoryShowSql");
             using (var session = sessionFactory.OpenSession())
             {
                 insertNewCustomers(session);
             }
+             * */
         }
 
         private void insertNewCustomers(ISession session)
         {
+            /*
             using (var tx = session.BeginTransaction())
             {
                 var c = new Customer()
@@ -91,11 +94,13 @@ namespace St.Eg.NHibernate.Mapping.Enums.ConsoleRunner
                 session.Save(c);
                 tx.Commit();
             }
+             * */
         }
 
 
         public void ex99_CreateDatabaseFluent()
         {
+            /*
             Fluently.Configure()
                     .Database(MsSqlConfiguration.MsSql2012.ConnectionString(_connString))
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CustomerMap>())
@@ -108,6 +113,7 @@ namespace St.Eg.NHibernate.Mapping.Enums.ConsoleRunner
                     .BuildConfiguration();
 
             Trace.WriteLine("Database dropped and created");
+             * */
         }
     }
 }
