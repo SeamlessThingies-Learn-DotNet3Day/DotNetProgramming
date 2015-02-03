@@ -6,6 +6,7 @@
     <Grid>
         <Grid.Resources>
             <DataTemplate x:Key="dtYoungerThanThirty">
+                
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="{Binding FirstName}" />
                 <TextBlock Foreground="Blue" Text="{Binding Age}" />
@@ -36,12 +37,36 @@
                  Height="200"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 ItemsSource="{Binding Employees,
+                                       Mode=TwoWay}"  
+                 ItemTemplateSelector="{StaticResource myDTS}"
+                                  SelectedItem="{Binding CurrentEmployee,
+                                        Mode=TwoWay}" 
+
+                 />
+            <!--
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding FirstName}" />
+                        <TextBlock Foreground="Blue" Text="{Binding Age}" />
+                    </StackPanel>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        -->
+<!--
+        <ListBox Width="300"
+                 Height="200"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
                  ItemTemplateSelector="{StaticResource myDTS}"
                  ItemsSource="{Binding Employees,
                                        Mode=TwoWay}"
                  SelectedItem="{Binding CurrentEmployee,
                                         Mode=TwoWay}" />
-
+-->
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button Width="100"

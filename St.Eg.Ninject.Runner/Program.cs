@@ -25,6 +25,15 @@ namespace St.Eg.Ninject.Runnerr
         static void Main(string[] args)
         {
             var p = new Program();
+            //p.ex1_BasicRegistrationAndGet();
+            //p.ex2_ReturnsMultiInstances();
+            //p.ex3_SingletonScope();
+            //p.ex4_RegisterByName();
+            //p.ex5_WithMethod();
+            //p.ex6_WithActivation();
+            //p.ex7_ThreadScope();
+            //p.ex8_ConstructorInjection();
+            //p.ex9_PropertyInjection();
             //p.ex10_WhenInjectedInto();
             //p.ex11_WithModule();
             //p.ex12_XMLConfig();
@@ -34,7 +43,7 @@ namespace St.Eg.Ninject.Runnerr
             //p.ex16_RequiresConstraint();
             //p.ex17_ContextBased();
             //p.ex18_GenericProvider();
-            p.ex19_Interception();
+            //p.ex19_Interception();
 
             Console.ReadLine();
         }
@@ -53,9 +62,8 @@ namespace St.Eg.Ninject.Runnerr
             var service = kernel.Get<IDataService>();
 
             Console.WriteLine(service.ID);
-            service.GetEmployees();
-            //employees.ToList().ForEach(
-              //  e => Console.WriteLine("{0} {1}", e.FirstName, e.LastName));
+            service.GetEmployees().ToList().ForEach(
+                e => Console.WriteLine("{0} {1}", e.FirstName, e.LastName));
         }
 
         private void ex2_ReturnsMultiInstances()
@@ -132,7 +140,7 @@ namespace St.Eg.Ninject.Runnerr
             });
 
 
-            kernel.Bind<IDataService>().To<MockDataService>()//.InThreadScope()
+            kernel.Bind<IDataService>().To<MockDataService>().InThreadScope()
                 .OnActivation(s => report("Activating", s))
                 .OnDeactivation(s => report("Deactivating", s));
 
@@ -174,6 +182,8 @@ namespace St.Eg.Ninject.Runnerr
         {
             var kernel = new StandardKernel();
             kernel.Bind<IDataService>().To<MockDataService>();
+
+
             kernel.Get<MockConstructorInjectionViewModel>();
         }
 
@@ -181,6 +191,7 @@ namespace St.Eg.Ninject.Runnerr
         {
             var kernel = new StandardKernel();
             kernel.Bind<IDataService>().To<MockDataService>();
+
             kernel.Get<MockPropertyInjectionViewModel>();
         }
 

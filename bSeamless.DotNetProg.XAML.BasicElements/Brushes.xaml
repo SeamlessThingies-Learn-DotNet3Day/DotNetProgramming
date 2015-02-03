@@ -10,7 +10,7 @@
                    VerticalAlignment="Top"
                    Fill="#FFD42828"
                    Stroke="#FF2646B4"
-                   StrokeThickness="5" />
+                   StrokeThickness="50" />
 
         <Ellipse Width="238"
                  Height="152"

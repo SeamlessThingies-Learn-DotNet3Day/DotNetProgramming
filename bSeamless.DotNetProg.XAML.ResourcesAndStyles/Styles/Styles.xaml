@@ -3,16 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Styles" Height="300" Width="300">
     <Window.Resources>
-        <Style TargetType="TextBlock">
+        <!--
+        <Style TargetType="TextBlock"  BasedOn="appFontStyle">
             <Setter Property="FontSize" Value="40" />
             <Setter Property="Foreground" Value="Blue" />
             <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
+        -->
     </Window.Resources>
     <Grid>
 
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="First textblock" />
             <TextBlock Text="Second textblock" />
         </StackPanel>
 

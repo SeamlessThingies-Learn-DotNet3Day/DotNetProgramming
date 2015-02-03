@@ -3,15 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="StackPanelWindow" Height="500" Width="500">
     <Grid>
-        <StackPanel Orientation="Horizontal">
-            <Rectangle Width="50"
+        <StackPanel Orientation="Vertical" Background="Pink" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Rectangle 
                        Height="50"
-                       Fill="Yellow" />
+                       Fill="Yellow"
+                       HorizontalAlignment="Stretch"
+                       />
             <Rectangle Width="50"
                        Height="50"
                        Fill="Green" />
-            <Rectangle Width="50"
-                       Height="50"
+            <Rectangle Width="250"
+                       Height="150"
                        Fill="Blue" />
         </StackPanel>
     </Grid>

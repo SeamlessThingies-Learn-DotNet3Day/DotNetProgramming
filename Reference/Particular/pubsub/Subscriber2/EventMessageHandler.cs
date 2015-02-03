@@ -4,6 +4,10 @@ using NServiceBus;
 
 public class EventMessageHandler : IHandleMessages<IMyEvent>
 {
+    public EventMessageHandler()
+    {
+        Console.WriteLine("I handle messages");
+    }
     public void Handle(IMyEvent message)
     {
         Console.WriteLine(string.Format("Subscriber 2 received IEvent with Id {0}.", message.EventId));

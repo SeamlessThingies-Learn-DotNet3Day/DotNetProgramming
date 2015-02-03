@@ -23,5 +23,11 @@ namespace bSeamless.DotNetProg.XAML.PanelLayout
         {
             InitializeComponent();
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("HI!");
+
+        }
     }
 }

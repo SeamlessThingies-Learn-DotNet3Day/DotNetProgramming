@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace bSeamless.DotNetProg.XAML.ResourcesAndStyles
+namespace App1
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -22,7 +22,15 @@ namespace bSeamless.DotNetProg.XAML.ResourcesAndStyles
     {
         public MainWindow()
         {
+
             InitializeComponent();
+
+
+            this.Loaded += MainWindow_Loaded;
+        }
+
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
