@@ -296,8 +296,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ST.Eg.NSB.Transactions.Clie
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Slides", "Slides", "{6060E4D5-7767-4488-9D2D-4F7BDD55D2BE}"
 	ProjectSection(SolutionItems) = preProject
+		Slides\NServiceBus\1 - Introduction.pptx = Slides\NServiceBus\1 - Introduction.pptx
+		Slides\NServiceBus\2 - Getting and Installing.pptx = Slides\NServiceBus\2 - Getting and Installing.pptx
+		Slides\NServiceBus\3 - Building a One-way Messaging App.pptx = Slides\NServiceBus\3 - Building a One-way Messaging App.pptx
+		Slides\NServiceBus\4 - Fault Tolerance.pptx = Slides\NServiceBus\4 - Fault Tolerance.pptx
 		Slides\NServiceBus\4 - One way with Error Processing.pptx = Slides\NServiceBus\4 - One way with Error Processing.pptx
-		TextFile1.txt = TextFile1.txt
+		Slides\NServiceBus\5 - Distributed Transactions.pptx = Slides\NServiceBus\5 - Distributed Transactions.pptx
+		Slides\NServiceBus\6 - Publish and Subscribe.pptx = Slides\NServiceBus\6 - Publish and Subscribe.pptx
+		Slides\NServiceBus\7 - Full Duplex.pptx = Slides\NServiceBus\7 - Full Duplex.pptx
+		Slides\NServiceBus\8 - WCF Integration.pptx = Slides\NServiceBus\8 - WCF Integration.pptx
+		Slides\NServiceBus\9 - Other Features.pptx = Slides\NServiceBus\9 - Other Features.pptx
 	EndProjectSection
 EndProject
 Global

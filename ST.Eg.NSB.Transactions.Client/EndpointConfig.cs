@@ -1,7 +1,7 @@
 
 using System.Diagnostics;
 
-namespace ST.Eg.NSB.First.Server
+namespace ST.Eg.NSB.Transactions.Client
 {
     using NServiceBus;
 
@@ -9,7 +9,7 @@ namespace ST.Eg.NSB.First.Server
 		This class configures this endpoint as a Server. More information about how to configure the NServiceBus host
 		can be found here: http://particular.net/articles/the-nservicebus-host
 	*/
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Client
     {
         public void Customize(BusConfiguration configuration)
         {
@@ -17,7 +17,7 @@ namespace ST.Eg.NSB.First.Server
             configuration.EnableInstallers();
 
             Trace.Listeners.Add(new ConsoleTraceListener());
-            Trace.WriteLine("Server endpoint online");
+            Trace.WriteLine("Transactions client online");
         }
     }
 }

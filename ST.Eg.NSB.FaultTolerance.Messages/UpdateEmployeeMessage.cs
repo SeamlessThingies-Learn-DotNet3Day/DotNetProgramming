@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NServiceBus;
 
-namespace ST.Eg.NSB.FaultTolerance.Client
+namespace ST.Eg.NSB.FaultTolerance.Messages
 {
     public class UpdateEmployeeMessage : ICommand
     {

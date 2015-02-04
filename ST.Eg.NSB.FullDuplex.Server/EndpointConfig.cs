@@ -1,7 +1,8 @@
 
+using System;
 using System.Diagnostics;
 
-namespace ST.Eg.NSB.First.Server
+namespace ST.Eg.NSB.FullDuplex.Server
 {
     using NServiceBus;
 
@@ -11,13 +12,14 @@ namespace ST.Eg.NSB.First.Server
 	*/
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
     {
+
         public void Customize(BusConfiguration configuration)
         {
             configuration.UsePersistence<InMemoryPersistence>();
             configuration.EnableInstallers();
 
             Trace.Listeners.Add(new ConsoleTraceListener());
-            Trace.WriteLine("Server endpoint online");
+            Trace.WriteLine("Server endpoint online....");
         }
     }
 }
