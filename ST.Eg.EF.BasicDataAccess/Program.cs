@@ -27,11 +27,12 @@ namespace ST.Eg.EF.BasicDataAccess
                 //s.ex09_LocalObservable();
                 //s.ex10_LazyNoLazy();
                 //s.ex11_EagerLoading();
+                //s.ex12_ExplicitLoading();
                 //s.ex13_IsLoaded();
                 //s.ex14_NavPropQueryBad();
                 //s.ex15_NavPropQueryGood();
-                //s.ex16_JustTheCount();
-                //s.ex17_SubsetOfLinkCollection();
+                s.ex16_JustTheCount();
+                //s.ex17_Async();
                 Console.ReadLine();
 
             }

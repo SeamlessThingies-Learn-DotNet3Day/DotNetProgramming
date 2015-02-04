@@ -52,7 +52,6 @@ namespace St.Eg.NHibernate.Relationships.ConsoleRunner
 
         public void ex01_insertCustomerWithOrders()
         {
-            /*
             createDatabaseFluently();
 
             var id = 0;
@@ -68,8 +67,8 @@ namespace St.Eg.NHibernate.Relationships.ConsoleRunner
                 tx.Commit();
 
                 id = c.Id;
-
             }
+            
             using (var session = sessionFactory.OpenSession())
             using (var tx = session.BeginTransaction())
             {
@@ -78,7 +77,6 @@ namespace St.Eg.NHibernate.Relationships.ConsoleRunner
                 Trace.WriteLine(reloaded);
                 tx.Commit();
             }
-             * */
         }
 
         public void ex02_insertCustomerWithOrders()
@@ -142,7 +140,6 @@ namespace St.Eg.NHibernate.Relationships.ConsoleRunner
 
         public void ex04_insertCustomerWithOrdersCascading()
         {
-            /*
             createDatabaseFluently();
 
             var id = 0;
@@ -168,16 +165,14 @@ namespace St.Eg.NHibernate.Relationships.ConsoleRunner
                 Trace.WriteLine(reloaded);
                 tx.Commit();
             }
-             * */
         }
 
         public void ex05_deleteCustomerCascading()
         {
-            /*
             createDatabaseFluently();
             ex04_insertCustomerWithOrdersCascading();
 
-            var sessionFactory = _kernel.Get<ISessionFactory>("sessionFactory");
+            var sessionFactory = _kernel.Get<ISessionFactory>("sessionFactoryShowSql");
             using (var session = sessionFactory.OpenSession())
             using (var tx = session.BeginTransaction())
             {
@@ -195,12 +190,10 @@ namespace St.Eg.NHibernate.Relationships.ConsoleRunner
                 if (orders == null || orders.Count == 0) Trace.WriteLine("Yippee! no orders either");
                 tx.Commit();
             }
-             * */
         }
 
         public void ex06_fetchWithJoin()
         {
-            /*
             createDatabaseFluently();
             ex04_insertCustomerWithOrdersCascading();
 
@@ -213,12 +206,10 @@ namespace St.Eg.NHibernate.Relationships.ConsoleRunner
                 Trace.WriteLine(c);
                 tx.Commit();
             }
-             * */
         }
 
         public void ex07_fetchFirst()
         {
-            /*
             createDatabaseFluently();
             ex04_insertCustomerWithOrdersCascading();
 
@@ -230,7 +221,6 @@ namespace St.Eg.NHibernate.Relationships.ConsoleRunner
                 Trace.WriteLine(customer);
                 tx.Commit();
             }
-             * */
         }
 
         public void ex08_fetchHorrible()

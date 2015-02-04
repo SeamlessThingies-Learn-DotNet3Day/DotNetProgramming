@@ -22,9 +22,9 @@ namespace St.Eg.NHibernate.Query.ConsoleRunner
                 //s.ex01_GetVsLoad();
                 //s.ex02_getThenLoadSameObject();
                 //s.ex03_addGetVsLoad();
-                //s.ex04_LINQ();
+                s.ex04_LINQ();
                 //s.ex05_HQL();
-                s.ex06_CriteriaQuery();
+                //s.ex06_CriteriaQuery();
             }
             catch (Exception ex)
             {

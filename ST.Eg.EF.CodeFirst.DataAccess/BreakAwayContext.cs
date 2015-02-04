@@ -5,6 +5,10 @@ namespace DataAccess
 {
   public class BreakAwayContext : DbContext
   {
+      public BreakAwayContext() : base("newdb")
+      {
+          
+      }
     public DbSet<Destination> Destinations { get; set; }
     public DbSet<Lodging> Lodgings { get; set; }
     public DbSet<Trip> Trips { get; set; }

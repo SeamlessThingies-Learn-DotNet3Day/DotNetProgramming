@@ -22,62 +22,53 @@ namespace ST.Eg.EF.BasicDataAccess.CRUD
 
         public void ex01_AddNewDestination()
         {
-            /*
             execute(ctx =>
             {
                 var machuPicchu = new Location
                 {
-                    LocationName = "Machu Picchu",
+                    LocationName = "Machu Picchu2",
                     Country = "Peru"
                 };
                 ctx.Locations.Add(machuPicchu);
                 ctx.SaveChanges();
             });
-             * */
         }
         
         public void ex02_UpdateGrandCanyon()
         {
-            /*
             execute(ctx =>
             {
                 var canyon = ctx.Locations.Single(l => l.LocationName == "Grand Canyon");
                 canyon.Description = "227 Mile Long Canyon";
                 ctx.SaveChanges();
             });
-             * */
         }
         
         public void ex03_DeleteEntity()
         {
-            /*
             execute(ctx =>
             {
                 var bay = ctx.Locations.Single(l => l.LocationName == "Wine Glass Bay");
                 ctx.Locations.Remove(bay);
                 ctx.SaveChanges();
             });
-             * */
         }
 
         
         public void ex04_DeleteWithStub()
         {
-            /*
             execute(ctx =>
             {
-                var todelete = new Location() {LocationID = 2};
+                var todelete = new Location() {LocationID = 6};
                 ctx.Locations.Attach(todelete);
                 ctx.Locations.Remove(todelete);
                 ctx.SaveChanges();
             });
-             * */
         }
         
         
         public void ex05_DeleteTrip()
         {
-            /*
             // this is an exception, FK issue, reservation not loaded in memory
             execute(ctx =>
             {
@@ -85,12 +76,10 @@ namespace ST.Eg.EF.BasicDataAccess.CRUD
                 ctx.Trips.Remove(trip);
                 ctx.SaveChanges();
             });
-             * */
         }
         
         public void ex06_DeleteTripOk()
         {
-            /*
             execute(ctx =>
             {
                 var trip = ctx.Trips.Single(t => t.Description == "Trip from the database");
@@ -98,12 +87,10 @@ namespace ST.Eg.EF.BasicDataAccess.CRUD
                 ctx.Trips.Remove(trip);
                 ctx.SaveChanges();
             });
-             * */
         }
         
         public void ex07_DeleteGrandCanyonWithRelatedLodgings()
         {
-            /*
             execute(ctx =>
             {
                 var canyon = ctx.Locations.Single(l => l.LocationName == "Grand Canyon");
@@ -112,7 +99,6 @@ namespace ST.Eg.EF.BasicDataAccess.CRUD
                 ctx.SaveChanges();
                 // eager loading ensures the delete
             });
-             * */
         }
         
         public void ex08_DeleteGrandCanyonLodgingsNotLoaded()
@@ -129,7 +115,6 @@ namespace ST.Eg.EF.BasicDataAccess.CRUD
 
         public void ex09_CheckForModifiedState()
         {
-            /*
             execute(ctx =>
             {
                 var mp = ctx.Locations.Find(5);
@@ -137,7 +122,6 @@ namespace ST.Eg.EF.BasicDataAccess.CRUD
                 mp.Description = "foo";
                 Trace.WriteLine(ctx.Entry(mp).State);
             });
-             * */
         }
 
         /*
@@ -152,9 +136,9 @@ namespace ST.Eg.EF.BasicDataAccess.CRUD
 
         #region private methods
 
-        private void execute(Action<BreakAwayContext> action)
+        private void execute(Action<BreakAwayEntities> action)
         {
-            using (var ctx = new BreakAwayContext())
+            using (var ctx = new BreakAwayEntities())
             {
                 ctx.Database.Log = sql => Trace.WriteLine(sql);
                 action(ctx);

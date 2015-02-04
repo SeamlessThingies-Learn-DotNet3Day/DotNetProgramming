@@ -57,10 +57,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ST.Eg.EF.BreakAwayModel2\ST.Eg.EF.BreakAwayModel2.csproj">
-      <Project>{e45c9b14-4634-4fae-b1af-461e4a76efa3}</Project>
-      <Name>ST.Eg.EF.BreakAwayModel2</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ST.Eg.EF.BreakAwayModel\ST.Eg.EF.BreakAwayModel.csproj">
       <Project>{5fe7018a-04cf-4755-b6a8-f76e5013b45e}</Project>
       <Name>ST.Eg.EF.BreakAwayModel</Name>

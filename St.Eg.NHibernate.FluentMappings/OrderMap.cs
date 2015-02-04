@@ -22,7 +22,7 @@ namespace St.Eg.NHibernate.FluentMappings
             Map(x => x.SubTotal);
             Map(x => x.Comment);
             Map(x => x.PromotionId);
-            //Component(x => x.ShippedTo);
+            Component(x => x.ShippedTo);
             
             // 1:1 back to the customer
             References(x => x.Customer, "CustomerId");

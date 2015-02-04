@@ -49,57 +49,57 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity.cs">
-      <DependentUpon>BreakAwayContext.tt</DependentUpon>
+      <DependentUpon>BreakAwayModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BreakAwayContext.Context.cs">
+    <Compile Include="BreakAwayModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BreakAwayContext.Context.tt</DependentUpon>
+      <DependentUpon>BreakAwayModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="BreakAwayContext.cs">
+    <Compile Include="BreakAwayModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BreakAwayContext.tt</DependentUpon>
+      <DependentUpon>BreakAwayModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BreakAwayContext.Designer.cs">
+    <Compile Include="BreakAwayModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BreakAwayContext.edmx</DependentUpon>
+      <DependentUpon>BreakAwayModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>BreakAwayContext.tt</DependentUpon>
+      <DependentUpon>BreakAwayModel.tt</DependentUpon>
     </Compile>
     <Compile Include="InternetSpecial.cs">
-      <DependentUpon>BreakAwayContext.tt</DependentUpon>
+      <DependentUpon>BreakAwayModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Location.cs">
-      <DependentUpon>BreakAwayContext.tt</DependentUpon>
+      <DependentUpon>BreakAwayModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Lodging.cs">
-      <DependentUpon>BreakAwayContext.tt</DependentUpon>
+      <DependentUpon>BreakAwayModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Payment.cs">
-      <DependentUpon>BreakAwayContext.tt</DependentUpon>
+      <DependentUpon>BreakAwayModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Person.cs">
-      <DependentUpon>BreakAwayContext.tt</DependentUpon>
+      <DependentUpon>BreakAwayModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reservation.cs">
-      <DependentUpon>BreakAwayContext.tt</DependentUpon>
+      <DependentUpon>BreakAwayModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Trip.cs">
-      <DependentUpon>BreakAwayContext.tt</DependentUpon>
+      <DependentUpon>BreakAwayModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="BreakAwayContext.edmx">
+    <EntityDeploy Include="BreakAwayModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BreakAwayContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>BreakAwayModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="BreakAwayContext.edmx.diagram">
-      <DependentUpon>BreakAwayContext.edmx</DependentUpon>
+    <None Include="BreakAwayModel.edmx.diagram">
+      <DependentUpon>BreakAwayModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -107,15 +107,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BreakAwayContext.Context.tt">
+    <Content Include="BreakAwayModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BreakAwayContext.edmx</DependentUpon>
-      <LastGenOutput>BreakAwayContext.Context.cs</LastGenOutput>
+      <DependentUpon>BreakAwayModel.edmx</DependentUpon>
+      <LastGenOutput>BreakAwayModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="BreakAwayContext.tt">
+    <Content Include="BreakAwayModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BreakAwayContext.edmx</DependentUpon>
-      <LastGenOutput>BreakAwayContext.cs</LastGenOutput>
+      <DependentUpon>BreakAwayModel.edmx</DependentUpon>
+      <LastGenOutput>BreakAwayModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

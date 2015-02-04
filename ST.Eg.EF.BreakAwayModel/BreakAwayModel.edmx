@@ -13,16 +13,17 @@
           <Property Name="LocationName" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Country" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
-          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="Photo" Type="image" />
           <Property Name="TravelWarnings" Type="nvarchar(max)" />
           <Property Name="ClimateInfo" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
           </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
@@ -32,14 +33,6 @@
           </Key>
           <Property Name="ActivityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ActivityTrips">
-          <Key>
-            <PropertyRef Name="Activity_ActivityId" />
-            <PropertyRef Name="Trip_Identifier" />
-          </Key>
-          <Property Name="Activity_ActivityId" Type="int" Nullable="false" />
-          <Property Name="Trip_Identifier" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="InternetSpecials">
           <Key>
@@ -96,7 +89,7 @@
           <Property Name="Info_Height_Reading" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Info_Height_Units" Type="nvarchar(max)" />
           <Property Name="Info_DietryRestrictions" Type="nvarchar(max)" />
-          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="Photo" Type="image" />
           <Property Name="Caption" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Reservations">
@@ -108,6 +101,14 @@
           <Property Name="PaidInFull" Type="datetime" />
           <Property Name="Traveler_PersonId" Type="int" />
           <Property Name="Trip_Identifier" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="TripActivities">
+          <Key>
+            <PropertyRef Name="Trip_Identifier" />
+            <PropertyRef Name="Activity_ActivityId" />
+          </Key>
+          <Property Name="Trip_Identifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Activity_ActivityId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Trips">
           <Key>
@@ -121,35 +122,7 @@
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="DestinationId" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_ActivityTrips_Activities_Activity_ActivityId">
-          <End Role="Activities" Type="Self.Activities" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ActivityTrips" Type="Self.ActivityTrips" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Activities">
-              <PropertyRef Name="ActivityId" />
-            </Principal>
-            <Dependent Role="ActivityTrips">
-              <PropertyRef Name="Activity_ActivityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ActivityTrips_Trips_Trip_Identifier">
-          <End Role="Trips" Type="Self.Trips" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ActivityTrips" Type="Self.ActivityTrips" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Trips">
-              <PropertyRef Name="Identifier" />
-            </Principal>
-            <Dependent Role="ActivityTrips">
-              <PropertyRef Name="Trip_Identifier" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_InternetSpecials_Lodgings_AccommodationId">
+        <Association Name="FK_dbo_InternetSpecials_dbo_Lodgings_AccommodationId">
           <End Role="Lodgings" Type="Self.Lodgings" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -163,7 +136,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Lodgings_baga_Locations_destination_id">
+        <Association Name="FK_dbo_Lodgings_baga_Locations_destination_id">
           <End Role="Locations" Type="Self.Locations" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -177,7 +150,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Lodgings_People_PrimaryContactId">
+        <Association Name="FK_dbo_Lodgings_dbo_People_PrimaryContactId">
           <End Role="People" Type="Self.People" Multiplicity="0..1" />
           <End Role="Lodgings" Type="Self.Lodgings" Multiplicity="*" />
           <ReferentialConstraint>
@@ -189,7 +162,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Lodgings_People_SecondaryContactId">
+        <Association Name="FK_dbo_Lodgings_dbo_People_SecondaryContactId">
           <End Role="People" Type="Self.People" Multiplicity="0..1" />
           <End Role="Lodgings" Type="Self.Lodgings" Multiplicity="*" />
           <ReferentialConstraint>
@@ -201,7 +174,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Payments_Reservations_ReservationId">
+        <Association Name="FK_dbo_Payments_dbo_Reservations_ReservationId">
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -215,7 +188,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reservations_People_Traveler_PersonId">
+        <Association Name="FK_dbo_Reservations_dbo_People_Traveler_PersonId">
           <End Role="People" Type="Self.People" Multiplicity="0..1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
@@ -227,7 +200,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reservations_Trips_Trip_Identifier">
+        <Association Name="FK_dbo_Reservations_dbo_Trips_Trip_Identifier">
           <End Role="Trips" Type="Self.Trips" Multiplicity="0..1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
@@ -239,7 +212,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Trips_baga_Locations_DestinationId">
+        <Association Name="FK_dbo_TripActivities_dbo_Activities_Activity_ActivityId">
+          <End Role="Activities" Type="Self.Activities" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TripActivities" Type="Self.TripActivities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activities">
+              <PropertyRef Name="ActivityId" />
+            </Principal>
+            <Dependent Role="TripActivities">
+              <PropertyRef Name="Activity_ActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TripActivities_dbo_Trips_Trip_Identifier">
+          <End Role="Trips" Type="Self.Trips" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TripActivities" Type="Self.TripActivities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trips">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="TripActivities">
+              <PropertyRef Name="Trip_Identifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Trips_baga_Locations_DestinationId">
           <End Role="Locations" Type="Self.Locations" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -257,50 +258,50 @@
           <EntitySet Name="Locations" EntityType="Self.Locations" Schema="baga" store:Type="Tables" />
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Activities" EntityType="Self.Activities" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ActivityTrips" EntityType="Self.ActivityTrips" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InternetSpecials" EntityType="Self.InternetSpecials" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lodgings" EntityType="Self.Lodgings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TripActivities" EntityType="Self.TripActivities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Trips" EntityType="Self.Trips" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_ActivityTrips_Activities_Activity_ActivityId" Association="Self.FK_ActivityTrips_Activities_Activity_ActivityId">
-            <End Role="Activities" EntitySet="Activities" />
-            <End Role="ActivityTrips" EntitySet="ActivityTrips" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ActivityTrips_Trips_Trip_Identifier" Association="Self.FK_ActivityTrips_Trips_Trip_Identifier">
-            <End Role="Trips" EntitySet="Trips" />
-            <End Role="ActivityTrips" EntitySet="ActivityTrips" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InternetSpecials_Lodgings_AccommodationId" Association="Self.FK_InternetSpecials_Lodgings_AccommodationId">
+          <AssociationSet Name="FK_dbo_InternetSpecials_dbo_Lodgings_AccommodationId" Association="Self.FK_dbo_InternetSpecials_dbo_Lodgings_AccommodationId">
             <End Role="Lodgings" EntitySet="Lodgings" />
             <End Role="InternetSpecials" EntitySet="InternetSpecials" />
           </AssociationSet>
-          <AssociationSet Name="FK_Lodgings_baga_Locations_destination_id" Association="Self.FK_Lodgings_baga_Locations_destination_id">
+          <AssociationSet Name="FK_dbo_Lodgings_baga_Locations_destination_id" Association="Self.FK_dbo_Lodgings_baga_Locations_destination_id">
             <End Role="Locations" EntitySet="Locations" />
             <End Role="Lodgings" EntitySet="Lodgings" />
           </AssociationSet>
-          <AssociationSet Name="FK_Lodgings_People_PrimaryContactId" Association="Self.FK_Lodgings_People_PrimaryContactId">
+          <AssociationSet Name="FK_dbo_Lodgings_dbo_People_PrimaryContactId" Association="Self.FK_dbo_Lodgings_dbo_People_PrimaryContactId">
             <End Role="People" EntitySet="People" />
             <End Role="Lodgings" EntitySet="Lodgings" />
           </AssociationSet>
-          <AssociationSet Name="FK_Lodgings_People_SecondaryContactId" Association="Self.FK_Lodgings_People_SecondaryContactId">
+          <AssociationSet Name="FK_dbo_Lodgings_dbo_People_SecondaryContactId" Association="Self.FK_dbo_Lodgings_dbo_People_SecondaryContactId">
             <End Role="People" EntitySet="People" />
             <End Role="Lodgings" EntitySet="Lodgings" />
           </AssociationSet>
-          <AssociationSet Name="FK_Payments_Reservations_ReservationId" Association="Self.FK_Payments_Reservations_ReservationId">
+          <AssociationSet Name="FK_dbo_Payments_dbo_Reservations_ReservationId" Association="Self.FK_dbo_Payments_dbo_Reservations_ReservationId">
             <End Role="Reservations" EntitySet="Reservations" />
             <End Role="Payments" EntitySet="Payments" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reservations_People_Traveler_PersonId" Association="Self.FK_Reservations_People_Traveler_PersonId">
+          <AssociationSet Name="FK_dbo_Reservations_dbo_People_Traveler_PersonId" Association="Self.FK_dbo_Reservations_dbo_People_Traveler_PersonId">
             <End Role="People" EntitySet="People" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reservations_Trips_Trip_Identifier" Association="Self.FK_Reservations_Trips_Trip_Identifier">
+          <AssociationSet Name="FK_dbo_Reservations_dbo_Trips_Trip_Identifier" Association="Self.FK_dbo_Reservations_dbo_Trips_Trip_Identifier">
             <End Role="Trips" EntitySet="Trips" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
-          <AssociationSet Name="FK_Trips_baga_Locations_DestinationId" Association="Self.FK_Trips_baga_Locations_DestinationId">
+          <AssociationSet Name="FK_dbo_TripActivities_dbo_Activities_Activity_ActivityId" Association="Self.FK_dbo_TripActivities_dbo_Activities_Activity_ActivityId">
+            <End Role="Activities" EntitySet="Activities" />
+            <End Role="TripActivities" EntitySet="TripActivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TripActivities_dbo_Trips_Trip_Identifier" Association="Self.FK_dbo_TripActivities_dbo_Trips_Trip_Identifier">
+            <End Role="Trips" EntitySet="Trips" />
+            <End Role="TripActivities" EntitySet="TripActivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Trips_baga_Locations_DestinationId" Association="Self.FK_dbo_Trips_baga_Locations_DestinationId">
             <End Role="Locations" EntitySet="Locations" />
             <End Role="Trips" EntitySet="Trips" />
           </AssociationSet>
@@ -321,15 +322,16 @@
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="TravelWarnings" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClimateInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Lodgings" Relationship="Self.FK_Lodgings_baga_Locations_destination_id" FromRole="Locations" ToRole="Lodgings" />
-          <NavigationProperty Name="Trips" Relationship="Self.FK_Trips_baga_Locations_DestinationId" FromRole="Locations" ToRole="Trips" />
+          <NavigationProperty Name="Lodgings" Relationship="Self.FK_dbo_Lodgings_baga_Locations_destination_id" FromRole="Locations" ToRole="Lodgings" />
+          <NavigationProperty Name="Trips" Relationship="Self.FK_dbo_Trips_baga_Locations_DestinationId" FromRole="Locations" ToRole="Trips" />
         </EntityType>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
           </Key>
-          <Property Name="MigrationId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
@@ -339,7 +341,7 @@
           </Key>
           <Property Name="ActivityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Trips" Relationship="Self.ActivityTrips" FromRole="Activities" ToRole="Trips" />
+          <NavigationProperty Name="Trips" Relationship="Self.TripActivities" FromRole="Activities" ToRole="Trips" />
         </EntityType>
         <EntityType Name="InternetSpecial">
           <Key>
@@ -351,7 +353,7 @@
           <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="AccommodationId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Lodging" Relationship="Self.FK_InternetSpecials_Lodgings_AccommodationId" FromRole="InternetSpecials" ToRole="Lodgings" />
+          <NavigationProperty Name="Lodging" Relationship="Self.FK_dbo_InternetSpecials_dbo_Lodgings_AccommodationId" FromRole="InternetSpecials" ToRole="Lodgings" />
         </EntityType>
         <EntityType Name="Lodging">
           <Key>
@@ -369,10 +371,10 @@
           <Property Name="Entertainment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Activities" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Location" Relationship="Self.FK_Lodgings_baga_Locations_destination_id" FromRole="Lodgings" ToRole="Locations" />
-          <NavigationProperty Name="InternetSpecials" Relationship="Self.FK_InternetSpecials_Lodgings_AccommodationId" FromRole="Lodgings" ToRole="InternetSpecials" />
-          <NavigationProperty Name="Person" Relationship="Self.FK_Lodgings_People_PrimaryContactId" FromRole="Lodgings" ToRole="People" />
-          <NavigationProperty Name="Person1" Relationship="Self.FK_Lodgings_People_SecondaryContactId" FromRole="Lodgings" ToRole="People" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_dbo_Lodgings_baga_Locations_destination_id" FromRole="Lodgings" ToRole="Locations" />
+          <NavigationProperty Name="InternetSpecials" Relationship="Self.FK_dbo_InternetSpecials_dbo_Lodgings_AccommodationId" FromRole="Lodgings" ToRole="InternetSpecials" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_dbo_Lodgings_dbo_People_PrimaryContactId" FromRole="Lodgings" ToRole="People" />
+          <NavigationProperty Name="Person1" Relationship="Self.FK_dbo_Lodgings_dbo_People_SecondaryContactId" FromRole="Lodgings" ToRole="People" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -382,7 +384,7 @@
           <Property Name="ReservationId" Type="Int32" Nullable="false" />
           <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Reservation" Relationship="Self.FK_Payments_Reservations_ReservationId" FromRole="Payments" ToRole="Reservations" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK_dbo_Payments_dbo_Reservations_ReservationId" FromRole="Payments" ToRole="Reservations" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -404,9 +406,9 @@
           <Property Name="Info_DietryRestrictions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Caption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Lodgings" Relationship="Self.FK_Lodgings_People_PrimaryContactId" FromRole="People" ToRole="Lodgings" />
-          <NavigationProperty Name="Lodgings1" Relationship="Self.FK_Lodgings_People_SecondaryContactId" FromRole="People" ToRole="Lodgings" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_People_Traveler_PersonId" FromRole="People" ToRole="Reservations" />
+          <NavigationProperty Name="Lodgings" Relationship="Self.FK_dbo_Lodgings_dbo_People_PrimaryContactId" FromRole="People" ToRole="Lodgings" />
+          <NavigationProperty Name="Lodgings1" Relationship="Self.FK_dbo_Lodgings_dbo_People_SecondaryContactId" FromRole="People" ToRole="Lodgings" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK_dbo_Reservations_dbo_People_Traveler_PersonId" FromRole="People" ToRole="Reservations" />
         </EntityType>
         <EntityType Name="Reservation">
           <Key>
@@ -417,9 +419,9 @@
           <Property Name="PaidInFull" Type="DateTime" Precision="3" />
           <Property Name="Traveler_PersonId" Type="Int32" />
           <Property Name="Trip_Identifier" Type="Guid" />
-          <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_Reservations_ReservationId" FromRole="Reservations" ToRole="Payments" />
-          <NavigationProperty Name="Person" Relationship="Self.FK_Reservations_People_Traveler_PersonId" FromRole="Reservations" ToRole="People" />
-          <NavigationProperty Name="Trip" Relationship="Self.FK_Reservations_Trips_Trip_Identifier" FromRole="Reservations" ToRole="Trips" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_dbo_Payments_dbo_Reservations_ReservationId" FromRole="Reservations" ToRole="Payments" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_dbo_Reservations_dbo_People_Traveler_PersonId" FromRole="Reservations" ToRole="People" />
+          <NavigationProperty Name="Trip" Relationship="Self.FK_dbo_Reservations_dbo_Trips_Trip_Identifier" FromRole="Reservations" ToRole="Trips" />
         </EntityType>
         <EntityType Name="Trip">
           <Key>
@@ -432,11 +434,11 @@
           <Property Name="CostUSD" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="DestinationId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Location" Relationship="Self.FK_Trips_baga_Locations_DestinationId" FromRole="Trips" ToRole="Locations" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Trips_Trip_Identifier" FromRole="Trips" ToRole="Reservations" />
-          <NavigationProperty Name="Activities" Relationship="Self.ActivityTrips" FromRole="Trips" ToRole="Activities" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_dbo_Trips_baga_Locations_DestinationId" FromRole="Trips" ToRole="Locations" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK_dbo_Reservations_dbo_Trips_Trip_Identifier" FromRole="Trips" ToRole="Reservations" />
+          <NavigationProperty Name="Activities" Relationship="Self.TripActivities" FromRole="Trips" ToRole="Activities" />
         </EntityType>
-        <Association Name="FK_Lodgings_baga_Locations_destination_id">
+        <Association Name="FK_dbo_Lodgings_baga_Locations_destination_id">
           <End Role="Locations" Type="Self.Location" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -450,7 +452,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Trips_baga_Locations_DestinationId">
+        <Association Name="FK_dbo_Trips_baga_Locations_DestinationId">
           <End Role="Locations" Type="Self.Location" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -464,7 +466,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_InternetSpecials_Lodgings_AccommodationId">
+        <Association Name="FK_dbo_InternetSpecials_dbo_Lodgings_AccommodationId">
           <End Role="Lodgings" Type="Self.Lodging" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -478,7 +480,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Lodgings_People_PrimaryContactId">
+        <Association Name="FK_dbo_Lodgings_dbo_People_PrimaryContactId">
           <End Role="People" Type="Self.Person" Multiplicity="0..1" />
           <End Role="Lodgings" Type="Self.Lodging" Multiplicity="*" />
           <ReferentialConstraint>
@@ -490,7 +492,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Lodgings_People_SecondaryContactId">
+        <Association Name="FK_dbo_Lodgings_dbo_People_SecondaryContactId">
           <End Role="People" Type="Self.Person" Multiplicity="0..1" />
           <End Role="Lodgings" Type="Self.Lodging" Multiplicity="*" />
           <ReferentialConstraint>
@@ -502,7 +504,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Payments_Reservations_ReservationId">
+        <Association Name="FK_dbo_Payments_dbo_Reservations_ReservationId">
           <End Role="Reservations" Type="Self.Reservation" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -516,7 +518,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reservations_People_Traveler_PersonId">
+        <Association Name="FK_dbo_Reservations_dbo_People_Traveler_PersonId">
           <End Role="People" Type="Self.Person" Multiplicity="0..1" />
           <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
           <ReferentialConstraint>
@@ -528,7 +530,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reservations_Trips_Trip_Identifier">
+        <Association Name="FK_dbo_Reservations_dbo_Trips_Trip_Identifier">
           <End Role="Trips" Type="Self.Trip" Multiplicity="0..1" />
           <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
           <ReferentialConstraint>
@@ -540,11 +542,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ActivityTrips">
+        <Association Name="TripActivities">
           <End Role="Activities" Type="Self.Activity" Multiplicity="*" />
           <End Role="Trips" Type="Self.Trip" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="BreakAwayContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="BreakAwayEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Locations" EntityType="Self.Location" />
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Activities" EntityType="Self.Activity" />
@@ -554,39 +556,39 @@
           <EntitySet Name="People" EntityType="Self.Person" />
           <EntitySet Name="Reservations" EntityType="Self.Reservation" />
           <EntitySet Name="Trips" EntityType="Self.Trip" />
-          <AssociationSet Name="FK_Lodgings_baga_Locations_destination_id" Association="Self.FK_Lodgings_baga_Locations_destination_id">
+          <AssociationSet Name="FK_dbo_Lodgings_baga_Locations_destination_id" Association="Self.FK_dbo_Lodgings_baga_Locations_destination_id">
             <End Role="Locations" EntitySet="Locations" />
             <End Role="Lodgings" EntitySet="Lodgings" />
           </AssociationSet>
-          <AssociationSet Name="FK_Trips_baga_Locations_DestinationId" Association="Self.FK_Trips_baga_Locations_DestinationId">
+          <AssociationSet Name="FK_dbo_Trips_baga_Locations_DestinationId" Association="Self.FK_dbo_Trips_baga_Locations_DestinationId">
             <End Role="Locations" EntitySet="Locations" />
             <End Role="Trips" EntitySet="Trips" />
           </AssociationSet>
-          <AssociationSet Name="FK_InternetSpecials_Lodgings_AccommodationId" Association="Self.FK_InternetSpecials_Lodgings_AccommodationId">
+          <AssociationSet Name="FK_dbo_InternetSpecials_dbo_Lodgings_AccommodationId" Association="Self.FK_dbo_InternetSpecials_dbo_Lodgings_AccommodationId">
             <End Role="Lodgings" EntitySet="Lodgings" />
             <End Role="InternetSpecials" EntitySet="InternetSpecials" />
           </AssociationSet>
-          <AssociationSet Name="FK_Lodgings_People_PrimaryContactId" Association="Self.FK_Lodgings_People_PrimaryContactId">
+          <AssociationSet Name="FK_dbo_Lodgings_dbo_People_PrimaryContactId" Association="Self.FK_dbo_Lodgings_dbo_People_PrimaryContactId">
             <End Role="People" EntitySet="People" />
             <End Role="Lodgings" EntitySet="Lodgings" />
           </AssociationSet>
-          <AssociationSet Name="FK_Lodgings_People_SecondaryContactId" Association="Self.FK_Lodgings_People_SecondaryContactId">
+          <AssociationSet Name="FK_dbo_Lodgings_dbo_People_SecondaryContactId" Association="Self.FK_dbo_Lodgings_dbo_People_SecondaryContactId">
             <End Role="People" EntitySet="People" />
             <End Role="Lodgings" EntitySet="Lodgings" />
           </AssociationSet>
-          <AssociationSet Name="FK_Payments_Reservations_ReservationId" Association="Self.FK_Payments_Reservations_ReservationId">
+          <AssociationSet Name="FK_dbo_Payments_dbo_Reservations_ReservationId" Association="Self.FK_dbo_Payments_dbo_Reservations_ReservationId">
             <End Role="Reservations" EntitySet="Reservations" />
             <End Role="Payments" EntitySet="Payments" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reservations_People_Traveler_PersonId" Association="Self.FK_Reservations_People_Traveler_PersonId">
+          <AssociationSet Name="FK_dbo_Reservations_dbo_People_Traveler_PersonId" Association="Self.FK_dbo_Reservations_dbo_People_Traveler_PersonId">
             <End Role="People" EntitySet="People" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reservations_Trips_Trip_Identifier" Association="Self.FK_Reservations_Trips_Trip_Identifier">
+          <AssociationSet Name="FK_dbo_Reservations_dbo_Trips_Trip_Identifier" Association="Self.FK_dbo_Reservations_dbo_Trips_Trip_Identifier">
             <End Role="Trips" EntitySet="Trips" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
-          <AssociationSet Name="ActivityTrips" Association="Self.ActivityTrips">
+          <AssociationSet Name="TripActivities" Association="Self.TripActivities">
             <End Role="Activities" EntitySet="Activities" />
             <End Role="Trips" EntitySet="Trips" />
           </AssociationSet>
@@ -596,7 +598,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DataAccessBreakAwayContextModelStoreContainer" CdmEntityContainer="BreakAwayContext">
+        <EntityContainerMapping StorageEntityContainer="DataAccessBreakAwayContextModelStoreContainer" CdmEntityContainer="BreakAwayEntities">
           <EntitySetMapping Name="Locations">
             <EntityTypeMapping TypeName="DataAccess.BreakAwayContextModel.Location">
               <MappingFragment StoreEntitySet="Locations">
@@ -614,7 +616,7 @@
             <EntityTypeMapping TypeName="DataAccess.BreakAwayContextModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
               </MappingFragment>
@@ -714,7 +716,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ActivityTrips" TypeName="DataAccess.BreakAwayContextModel.ActivityTrips" StoreEntitySet="ActivityTrips">
+          <AssociationSetMapping Name="TripActivities" TypeName="DataAccess.BreakAwayContextModel.TripActivities" StoreEntitySet="TripActivities">
             <EndProperty Name="Activities">
               <ScalarProperty Name="ActivityId" ColumnName="Activity_ActivityId" />
             </EndProperty>

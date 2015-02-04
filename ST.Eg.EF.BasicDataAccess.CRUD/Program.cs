@@ -19,6 +19,7 @@ namespace ST.Eg.EF.BasicDataAccess.CRUD
                 //s.ex01_AddNewDestination();
                 //s.ex02_UpdateGrandCanyon();
                 //s.ex03_DeleteEntity();
+                //s.ex04_DeleteWithStub();
                 //s.ex05_DeleteTrip();
                 //s.ex06_DeleteTripOk();
                 //s.ex07_DeleteGrandCanyonWithRelatedLodgings();

@@ -189,7 +189,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ST.Eg.EF.BreakAwayModel2", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ST.Eg.EF.BasicDataAccess.CRUD", "ST.Eg.EF.BasicDataAccess.CRUD\ST.Eg.EF.BasicDataAccess.CRUD.csproj", "{A887DEFD-9B4C-404E-BD89-AFDDD1E6522D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - Code First", "05 - Code First", "{068FE59C-9217-4FD2-AD6B-5927F4C3BBF0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Code First", "03 - Code First", "{068FE59C-9217-4FD2-AD6B-5927F4C3BBF0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ST.Eg.EF.CodeFirst.BuildDatabase", "ST.Eg.EF.CodeFirst.BuildDatabase\ST.Eg.EF.CodeFirst.BuildDatabase.csproj", "{B5B28D0F-E5D2-4AA5-8F46-8F6C425BBE12}"
 EndProject
@@ -264,6 +264,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "St.Eg.NHibernate.Domain", "St.Eg.NHibernate.Domain\St.Eg.NHibernate.Domain.csproj", "{C97B0D77-9872-4BCB-BC25-DB6A94FB907A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "St.Eg.NHibernate.FluentMappings", "St.Eg.NHibernate.FluentMappings\St.Eg.NHibernate.FluentMappings.csproj", "{FE7377CD-8F77-49CA-9CEA-4CC1458BC63E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{390AF593-0204-4226-987C-590834AD3EC9}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

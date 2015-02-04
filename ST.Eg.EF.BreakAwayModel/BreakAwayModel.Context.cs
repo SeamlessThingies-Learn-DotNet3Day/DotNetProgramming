@@ -13,10 +13,10 @@ namespace ST.Eg.EF.BreakAwayModel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BreakAwayContext : DbContext
+    public partial class BreakAwayEntities : DbContext
     {
-        public BreakAwayContext()
-            : base("name=BreakAwayContext")
+        public BreakAwayEntities()
+            : base("name=BreakAwayEntities")
         {
         }
     

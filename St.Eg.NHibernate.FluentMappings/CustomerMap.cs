@@ -13,6 +13,7 @@ namespace St.Eg.NHibernate.FluentMappings
     {
         public CustomerMap()
         {
+            Table("Customer");
             Id(x => x.Id).GeneratedBy.Native();
             Map(x => x.FirstName);
             Map(x => x.LastName);
@@ -23,16 +24,16 @@ namespace St.Eg.NHibernate.FluentMappings
             Map(x => x.CreditRating);
             Map(x => x.MemberSince);
 
-            //Component(c => c.ShippingAddress);
+            Component(c => c.ShippingAddress);
 
             // 1:m with orders
             HasMany(x => x.Orders)
                 .Cascade.AllDeleteOrphan()
                 //.Inverse()
                 //.Fetch.Select()
-                //.Fetch.Join()
-                .Table("Order")
-                .KeyColumn("CustomerId");
+                .Fetch.Join()
+                .KeyColumn("CustomerId")
+                .Table("Order");
         }
     }
 }

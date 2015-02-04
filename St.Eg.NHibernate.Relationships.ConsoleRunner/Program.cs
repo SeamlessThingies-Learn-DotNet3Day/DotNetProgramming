@@ -19,16 +19,16 @@ namespace St.Eg.NHibernate.Relationships.ConsoleRunner
             try
             {
                 var s = new Strategies();
-                //s.ex1_insertCustomerWithOrders();
+                //s.ex01_insertCustomerWithOrders();
                 //s.ex2_insertCustomerWithOrders();
                 //s.ex3_viewCustomersForOrders();
-                //s.ex4_insertCustomerWithOrdersCascading();
-                //s.ex5_deleteCustomerCascading();
-                //s.ex6_fetchWithJoin();
-                //s.ex7_fetchFirst();
+                //s.ex04_insertCustomerWithOrdersCascading();
+                //s.ex05_deleteCustomerCascading();
+                //s.ex06_fetchWithJoin();
+                s.ex07_fetchFirst();
                 //s.ex8_fetchHorrible();
                 //s.ex09_noInverse();
-                s.ex10_Inverse();
+                //s.ex10_Inverse();
             }
             catch (Exception ex)
             {

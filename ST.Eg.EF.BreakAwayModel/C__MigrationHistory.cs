@@ -15,7 +15,7 @@ namespace ST.Eg.EF.BreakAwayModel
     public partial class C__MigrationHistory
     {
         public string MigrationId { get; set; }
-        public System.DateTime CreatedOn { get; set; }
+        public string ContextKey { get; set; }
         public byte[] Model { get; set; }
         public string ProductVersion { get; set; }
     }
