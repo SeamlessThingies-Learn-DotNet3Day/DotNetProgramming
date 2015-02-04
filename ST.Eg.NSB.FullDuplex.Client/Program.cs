@@ -39,7 +39,7 @@ namespace ST.Eg.NSB.FullDuplex.Client
                         DataId = Guid.NewGuid()
                     };
                     bus.Send("AddValuesService_Server", m);
-                    /*
+                    
                     // also can do this
                     bus.Send("AddValuesService_Server", m).Register(
                         state =>
@@ -47,7 +47,7 @@ namespace ST.Eg.NSB.FullDuplex.Client
                             Trace.WriteLine("Got response");
                         },
                         null);
-                    */
+                    
                     Trace.WriteLine(string.Format("Sent message: {0} {1}", m.Value1, m.Value2));
                 }
             }

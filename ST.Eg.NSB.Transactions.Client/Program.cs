@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
-using ST.Eg.NSB.PubSub.Messages;
+using ST.Eg.NSB.Transactions.Messages;
 
-namespace ST.Eg.NSB.PubSub.Publisher
+namespace ST.Eg.NSB.Transactions.Client
 {
     class Program
     {
@@ -17,30 +16,27 @@ namespace ST.Eg.NSB.PubSub.Publisher
             Trace.Listeners.Add(new ConsoleTraceListener());
 
             var busConfiguration = new BusConfiguration();
-            busConfiguration.EndpointName("PubSub.EmployeeUpdate.Publisher");
+            busConfiguration.EndpointName("TransactionProcessing_Client");
             busConfiguration.UseSerialization<JsonSerializer>();
             busConfiguration.UsePersistence<InMemoryPersistence>();
             busConfiguration.EnableInstallers();
 
             var startableBus = Bus.Create(busConfiguration);
 
-            var i = 0;
             using (var bus = startableBus.Start())
             {
-                while (!Console.KeyAvailable)
+                var i = 0;
+                while (true)
                 {
-                    Thread.Sleep(1000);
-
-                    var m = new EmployeeUpdatedMessage()
-                    {
-                        EmployeeId = i++,
-                        MessageID = Guid.NewGuid().ToString()
-                    };
-
-                    bus.Publish(m);
-                    Trace.WriteLine(string.Format("Sent message: {0} {1}", m.MessageID, m.EmployeeId));
+                    Trace.WriteLine("Press enter to send a message");
+                    Console.ReadLine();
+                    bus.Send("TransactionProcessing_Server",
+                        new NewLocationMessage("Paws Up", "The Last Great Place"));
+                    Trace.WriteLine(string.Format("Sent update for id {0}", i));
+                    i++;
                 }
             }
+
         }
     }
 }

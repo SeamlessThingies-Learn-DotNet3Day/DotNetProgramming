@@ -10,7 +10,8 @@ using ST.Eg.NSB.FullDuplex.Shared;
 
 namespace ST.Eg.NSB.FullDuplex.Server
 {
-    public class PerformAddCalculationMessageHandler : IHandleMessages<PerformAddCalculationMessage>
+    public class PerformAddCalculationMessageHandler : 
+        IHandleMessages<PerformAddCalculationMessage>
     {
         private IBus _bus;
 
@@ -21,7 +22,8 @@ namespace ST.Eg.NSB.FullDuplex.Server
 
         public void Handle(PerformAddCalculationMessage message)
         {
-            Trace.WriteLine(string.Format("Received: {0} {1}", message.Value1, message.Value2));
+            Trace.WriteLine(string.Format("Received: {0} {1}", 
+                message.Value1, message.Value2));
             _bus.Reply<AddCalculationResponseMessage>(rm =>
             {
                 rm.DataId = message.DataId;
